@@ -1,0 +1,253 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav--bar {
+    width: 100%;
+    height: 90px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    box-shadow : 0px 2.982px 7.4564px 0px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+}
+
+.nav--logo {
+    height: 100%;
+    margin: 0 30px;
+}
+.nav--bar .buttons {
+    width: 100%;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.nav--button {
+    /*width: 150px;
+    height: 50px;*/
+    margin: 5px;
+    align-items: center;
+    padding: 7px;
+    color: rgb(73, 72, 72);
+    background-color: white;
+    border-radius: 8px;
+    border-color: rgb(133, 41, 133);
+}
+
+.nav--button:hover {
+    transform: scale(1.05);
+}
+
+.home-contents {
+    margin-top: 100px;
+}
+
+.gray {
+    color: #918E9B;
+}
+
+section {
+    padding: 26px 77px;
+}
+.hero {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-photo {
+    align-self: center;
+}
+
+.hero--header {
+    margin-bottom: 16px;
+}
+
+.hero--text {
+    margin-top: 0;
+}
+
+/*Search Bar*/
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: solid;
+  border-color: rgb(133, 41, 133);
+  border-radius: 10px;
+  padding: 0 25px;
+}
+
+.criteria {
+  margin: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.criteria label {
+    font-size: 18px;
+}
+
+.criteria input, .criteria select {
+    margin-top: 2px;
+    padding: 2px;
+    min-width: 80px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+.criteria button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 90px;
+    height: 30px;
+    color: rgb(249, 249, 249);
+    font-size: 15px;
+    background-color: rgb(133, 41, 133);
+    border: 0 solid;
+    border-radius: 10px;
+  }
+.criteria button:hover {
+    transform: scale(1.05);
+    background-color: rgb(171, 76, 171);
+}
+
+/* Card */
+.cards-list {
+    margin-top: 10px;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    max-width: 400px;
+    height: 170px;
+    font-size: 12px;
+    border-style:ridge;
+}
+.card .pet-photo {
+    width: 150px
+}
+.card .pet--image {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.card .pet-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 7px;
+}
+.card .pet-info > * {
+    margin: 3px;
+}
+
+.pet-info .pet--name {
+    font-size: large;
+    font-weight: bold;
+}
+
+/*Pet Form*/
+.closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 7px;
+}
+.closeIcon:hover > *{
+    padding: 1.5px;
+}
+.closeIcon :hover {
+    color: rgb(223, 223, 223);
+    background-color: rgba(0, 0, 0, 0.516);
+    border-radius: 50%;
+}
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column ;
+  justify-content: center;
+  background-color: rgba(215, 234, 244, 0.95);
+  border: solid black;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+}
+.user-form {
+    top: 30%;
+    left: 45%;
+    width: 230px;
+}
+.pet-form {
+  position: fixed;
+  z-index: 1;
+  top: 115px;
+  left: 40%;
+  width: 350px;
+  height: 460px;
+  border: solid black;
+}
+
+.animate {
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-delay: 0.1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/*pagination*/
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+.pagination button {
+  height: 25px;
+  width: 25px;
+  margin: 0 5px;
+  justify-content: center;
+  line-height: normal;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 20%;
+  border-width: 1px;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+.pagination button:hover {
+    background-color: rgb(231, 231, 234);
+}
+
+.pagination button.active {
+    font-weight: 900;
+    border-color: #101010;
+    background-color: rgb(227, 227, 254);
+    color: #101010;
+}
