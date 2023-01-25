@@ -25,7 +25,7 @@ export default function App() {
         }
      ]
     );
-    const [formData, setFormData] = React.useState(
+    const [addPetData, setaddPetData] = React.useState(
     {
             name: "",
             type: "",
@@ -122,7 +122,7 @@ export default function App() {
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
-        setFormData(prevFormData => {
+        setaddPetData(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: type === "checkbox" ? checked : value
@@ -161,7 +161,7 @@ export default function App() {
     const updateForm = (item) =>  {
       setSelectedPetId(item.id)
       const {id, ...data} = item
-      setFormData(data)
+      setaddPetData(data)
     };
 
     const pets = petList.map(item => {
@@ -186,11 +186,11 @@ export default function App() {
 
     const addPet = (event) => {
         const data = new FormData();
-        data.append("name", formData.name);
-        data.append("type", formData.type);
-        data.append("breed", formData.breed);
-        data.append("age", formData.age);
-        data.append("sex", formData.sex);
+        data.append("name", addPetData.name);
+        data.append("type", addPetData.type);
+        data.append("breed", addPetData.breed);
+        data.append("age", addPetData.age);
+        data.append("sex", addPetData.sex);
         data.append("imageFile", selectedImageFile);
 
         axiosLoggedIn.post("http://localhost:3001/pets/create",data)
@@ -198,7 +198,7 @@ export default function App() {
             setCurrentPage(numberOfPages)
             // setPetList ([
             //   ...petList,
-            //   formData
+            //   addPetData
             // ])
           })
           .catch((err) => alert(err));
@@ -209,19 +209,19 @@ export default function App() {
 
     const filterPet = (event) => {
       event.preventDefault();
-      const newFormData = removeEmptyAttributes(formData) ;
+      const newFormData = removeEmptyAttributes(addPetData) ;
       Axios.get("http://localhost:3001/pets/filter", {params: newFormData}).then((response) => {
         setPetList(response.data)
       });
     }
 
     const updatePet = (event) => {
-      axiosLoggedIn.put(`http://localhost:3001/pets/update/${selectedPetId}`, formData)
+      axiosLoggedIn.put(`http://localhost:3001/pets/update/${selectedPetId}`, addPetData)
            .then((response) => {
                const selectedPetIndex = petList.findIndex(pet => pet.id == selectedPetId)
                const item = {
                    id : selectedPetId,
-                   ...formData
+                   ...addPetData
                }
                setPetList(oldPetList => {
                  oldPetList.splice(selectedPetIndex,1,item);
@@ -241,13 +241,13 @@ export default function App() {
     return (
         <div>
           <Routes>
-              <Route path="/CreatePost" element={<PetForm onSubmit={addPet} update={false} handleExit={handleExit} handleChange={handleChange} handleChangeFile={handleChangeFile} formData={formData}/>} />
-              <Route path="/updateForm" element={<PetForm onSubmit={updatePet} update={true} handleExit={handleExit} handleChange={handleChange} handleChangeFile={handleChangeFile} formData={formData}/>} />
+              <Route path="/CreatePost" element={<PetForm onSubmit={addPet} update={false} handleExit={handleExit} handleChange={handleChange} handleChangeFile={handleChangeFile} addPetData={addPetData}/>} />
+              <Route path="/updateForm" element={<PetForm onSubmit={updatePet} update={true} handleExit={handleExit} handleChange={handleChange} handleChangeFile={handleChangeFile} addPetData={addPetData}/>} />
               <Route path="/about" element={<About/>} />
               <Route path="/Login" element={<Login handleChange={handleLoginDataChange} onSubmit={login} handleExit={handleExit}/>} />
               <Route path="/SignUp" element={<SignUp handleChange={handleSignUpDataChange} onSubmit={signup} handleExit={handleExit}/>} />
           </Routes>
-          <Home pets={pets} onSearchSubmit={filterPet} handleChange={handleChange} formData={formData}
+          <Home pets={pets} onSearchSubmit={filterPet} handleChange={handleChange} addPetData={addPetData}
                 pages={generatePagesArray()} setCurrentPage={setCurrentPage} currentPage={currentPage}
                 isAuthenticated={isAuthenticated}
                 />

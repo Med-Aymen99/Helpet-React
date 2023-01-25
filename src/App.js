@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import PetForm from "./Components/PetForm"
+import PetForm from "./pages/PetForm"
 import About from "./pages/About"
 import {Route, Routes} from 'react-router-dom'
 import Home from "./pages/Home"
@@ -7,8 +7,8 @@ import { PaginationContext } from "./context/PaginationContext"
 import useApi from './utils/api';
 import { PetContext } from './context/PetContext';
 import { removeEmptyAttributes } from "./utils/generalFunctions"
-import LoginForm from './Components/LoginFrom';
-import SignUpForm from './Components/SignUpForm';
+import LoginForm from './pages/LoginFrom';
+import SignUpForm from './pages/SignUpForm';
 import { AuthContext } from './utils/auth/AuthContext';
 import Navbar from "./Components/Navbar"
 

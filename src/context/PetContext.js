@@ -4,29 +4,30 @@ import React, { createContext, useContext } from "react";
 export const PetContext = createContext();
 
 const PetProvider = ({children}) => {
-
+  const petInfo = {
+    name: "",
+    type: "",
+    breed: "",
+    age: "",
+    sex: "",
+    imageRef: ""
+  }
   const [petList, setPetList] = React.useState(
-    [
-      {
-        id:"",
-        name: "",
-        type: "",
-        breed: "",
-        age: "",
-        sex: "",
-        imageRef: ""
-      }
-   ]
+    [{
+        id: "",
+      ...petInfo
+    }]
   );
-  const [formData, setFormData] = React.useState(
-  {
-          name: "",
-          type: "",
-          breed: "",
-          age: "",
-          sex: "",
-          imageRef: ""
-  })
+  const [addPetData, setaddPetData] = React.useState(
+    {
+      ...petInfo
+    }
+  )
+  const [updatePetData, setUpdatePetData] = React.useState(
+    {
+      ...petInfo
+    }
+  )
   const [searchData, setsearchData] = React.useState(
   {
           type: "",
@@ -44,12 +45,13 @@ const PetProvider = ({children}) => {
   }
  
   return (
-    <PetContext.Provider value={{ petList, setPetList, formData, setFormData,
+    <PetContext.Provider value={{ petList, setPetList, addPetData, setaddPetData,
                                  searchData, setsearchData,
                                  filteredPetList,setFilteredPedList, 
                                  selectedPetId, setSelectedPetId, 
                                  selectedImageFile, setselectedImageFile,
-                                 handleChangeImage, searchTrigger, setSearchTrigger}}>
+                                 handleChangeImage, searchTrigger, setSearchTrigger,
+                                 updatePetData, setUpdatePetData}}>
         {children}               
     </PetContext.Provider>
   );

@@ -15,7 +15,7 @@ export default function PetForm(props) {
                 placeholder="name"
                 onChange={props.handleChange}
                 name="name"
-                value={props.formData.name}
+                value={props.addPetData.name}
             />
             <br />
             <label htmlFor="type">type</label>
@@ -25,7 +25,7 @@ export default function PetForm(props) {
                 placeholder="type"
                 onChange={props.handleChange}
                 name="type"
-                value={props.formData.type}
+                value={props.addPetData.type}
             />
             <br />
             <label htmlFor="breed">breed</label>
@@ -34,7 +34,7 @@ export default function PetForm(props) {
                 placeholder="breed"
                 onChange={props.handleChange}
                 name="breed"
-                value={props.formData.breed}
+                value={props.addPetData.breed}
             />
             <br />
             <label htmlFor="age">age (in months)</label>
@@ -44,7 +44,7 @@ export default function PetForm(props) {
                 placeholder="months"
                 onChange={props.handleChange}
                 name="age"
-                value={props.formData.age}
+                value={props.addPetData.age}
             />
             <br />
 
@@ -56,7 +56,7 @@ export default function PetForm(props) {
                     id="male"
                     name="sex"
                     value="male"
-                    checked={props.formData.sex === "male"}
+                    checked={props.addPetData.sex === "male"}
                     onChange={props.handleChange}
                 />
                 <label htmlFor="male"> male</label>
@@ -67,7 +67,7 @@ export default function PetForm(props) {
                     id="female"
                     name="sex"
                     value="female"
-                    checked={props.formData.sex === "female"}
+                    checked={props.addPetData.sex === "female"}
                     onChange={props.handleChange}
                 />
                 <label htmlFor="female"> female</label>

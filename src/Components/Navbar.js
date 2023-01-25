@@ -31,11 +31,6 @@ export default function Navbar(props) {
 							About Us
 						</button>
 					</Link>
-					<Link to="/shop">
-						<button className="nav--button">
-							Shop Now
-						</button>
-					</Link>
 				</div>
 				<div>
 					{!auth.isAuthenticated &&

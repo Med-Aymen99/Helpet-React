@@ -11,7 +11,7 @@ export default function SearchBar(props) {
             name="type"
             id="type"
             onChange={props.handleChange}
-            value={props.formData.type}
+            value={props.addPetData.type}
           >
             <option selected value=""> Type </option>
             <option value="dog" /*defaultValue*/>dog</option>
@@ -28,7 +28,7 @@ export default function SearchBar(props) {
             name="sex"
             id="sex"
             onChange={props.handleChange}
-            value={props.formData.sex}
+            value={props.addPetData.sex}
           >
             <option selected value=""> Sex </option>
             <option value="female" /*defaultValue*/>female</option>
@@ -43,7 +43,7 @@ export default function SearchBar(props) {
               type="number"
               placeholder="months"
               onChange={props.handleChange}
-              value={props.formData.age}
+              value={props.addPetData.age}
           />
         </div>
 

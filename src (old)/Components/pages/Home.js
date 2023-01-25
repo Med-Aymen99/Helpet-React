@@ -10,7 +10,7 @@ export default function Home(props) {
       <Navbar isAuthenticated={props.isAuthenticated}/>
       <div className="home-contents">
         <Hero />
-        <SearchBar pets={props.pets} onSubmit={props.onSearchSubmit} handleChange={props.handleChange} formData={props.formData} />
+        <SearchBar pets={props.pets} onSubmit={props.onSearchSubmit} handleChange={props.handleChange} addPetData={props.addPetData} />
         <section className="cards-list" >
           {props.pets}
         </section>

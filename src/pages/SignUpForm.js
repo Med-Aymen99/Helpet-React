@@ -3,8 +3,8 @@ import {VscChromeClose} from 'react-icons/vsc'
 import { NavigationContext } from "../context/NavigationContext";
 import { signup } from "../utils/auth/AuthAPI";
 import { handleChangeFunc } from "../utils/generalFunctions";
-import { AuthContext } from './../utils/auth/AuthContext';
-import useApi from './../utils/api';
+import { AuthContext } from '../utils/auth/AuthContext';
+import useApi from '../utils/api';
 
 export default function SignUpForm(props) {
     const navigate = useContext(NavigationContext);

@@ -10,7 +10,7 @@ import useApi from './../utils/api';
 import { NavigationContext } from './../context/NavigationContext';
 
 export default function Home(props) {
-  const {petList, setFormData, setSelectedPetId, setPetList} = useContext(PetContext);
+  const {petList, setUpdatePetData, setSelectedPetId, setPetList} = useContext(PetContext);
   const {auth} = useContext(AuthContext);
  
   const api = useApi();
@@ -18,7 +18,7 @@ export default function Home(props) {
   const updateForm = (item) =>  {
     setSelectedPetId(item.id)
     const {id, ...data} = item
-    setFormData(data)
+    setUpdatePetData(data)
   };
 
   const navigate = useContext(NavigationContext);
