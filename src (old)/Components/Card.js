@@ -23,7 +23,7 @@ export default function Card(props) {
               <button onClick={props.onClickDelete}>
                 Delete
               </button>
-              <Link to="/updateForm">
+              <Link to="/updateForm" className="Link-class" > 
                 {props.isAuthenticated &&
                     <button onClick={props.onClickUpdate}>
                       Update

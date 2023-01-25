@@ -12,7 +12,7 @@ export default function Navbar(props) {
 			<div className="buttons">
 				<div>
 					{props.isAuthenticated &&
-						<Link to="/CreatePost">
+						<Link to="/CreatePost" >
 							<button className="nav--button">
 								Give up for adoption
 							</button>

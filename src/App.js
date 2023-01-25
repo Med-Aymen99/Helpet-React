@@ -11,6 +11,7 @@ import LoginForm from './pages/LoginFrom';
 import SignUpForm from './pages/SignUpForm';
 import { AuthContext } from './utils/auth/AuthContext';
 import Navbar from "./Components/Navbar"
+import MyProfile from "./pages/MyProfile"
 
 export default function App() {
     
@@ -76,6 +77,7 @@ export default function App() {
               <Route path="/about" element={<About/>} />
               <Route path="/Login" element={<LoginForm />} />
               <Route path="/SignUp" element={<SignUpForm />} />
+              <Route path="/MyProfile" element={<MyProfile />} />
               
           </Routes>
           <Navbar/>

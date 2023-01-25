@@ -18,16 +18,8 @@ const PetProvider = ({children}) => {
       ...petInfo
     }]
   );
-  const [addPetData, setaddPetData] = React.useState(
-    {
-      ...petInfo
-    }
-  )
-  const [updatePetData, setUpdatePetData] = React.useState(
-    {
-      ...petInfo
-    }
-  )
+  const [addPetData, setaddPetData] = React.useState({...petInfo})
+  const [updatePetData, setUpdatePetData] = React.useState({...petInfo})
   const [searchData, setsearchData] = React.useState(
   {
           type: "",

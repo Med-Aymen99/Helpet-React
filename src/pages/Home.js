@@ -43,7 +43,7 @@ export default function Home(props) {
     />
   })
   return (
-    <div className="home-contents">
+    <div className="page-content">
       <Hero />
       <SearchBar />
       <section className="cards-list" >

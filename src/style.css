@@ -24,6 +24,7 @@ body {
 .nav--logo {
     height: 100px;
     margin-left: 15px;
+    cursor: pointer;
 }
 .home-link:hover .nav--logo {
     transform: scale(1.05);
@@ -53,7 +54,7 @@ body {
     transform: scale(1.05);
 }
 
-.home-contents {
+.page-content {
     margin-top: 100px;
 }
 

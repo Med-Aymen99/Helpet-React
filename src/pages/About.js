@@ -4,7 +4,7 @@ import card2Img from "../images/undraw_dog_c7i6.svg"
 
 function AboutUs() {
   return (
-    <div className="home-contents about-page">
+    <div className="page-content about-page">
       <h1>About Us</h1>
       <div>
         <h2>Welcome to Helpet</h2>
