@@ -15,7 +15,7 @@ export default function Home(props) {
           {props.pets}
         </section>
         <div className="pagination">
-          <Pagination pages={props.pages} changingPage={props.changingPage} currentPage={props.currentPage}/>
+          <Pagination pages={props.pages} setCurrentPage={props.setCurrentPage} currentPage={props.currentPage}/>
         </div>
       </div>
     </div>

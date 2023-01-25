@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import notAvailable from "../images/notAvailable.jpg"
 
 export default function Card(props) {
-    
+
     const imgName = props.imageRef
     let imagePath = notAvailable
     if (imgName!="") {

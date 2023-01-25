@@ -1,37 +1,17 @@
-import React, { useContext } from "react"
+import React from "react"
 import {GoSearch} from 'react-icons/go'
-import { PetContext } from "../context/PetContext"
-import { handleChangeFunc, removeEmptyAttributes } from "../utils/generalFunctions";
-import useApi from './../utils/api';
-import { PaginationContext } from './../context/PaginationContext';
 
 export default function SearchBar(props) {
-
-  const {searchData, setSearchTrigger, setsearchData} = useContext(PetContext);
-  const {setCurrentPage, setIsSearch} = useContext(PaginationContext);
-  const handleChange = handleChangeFunc(setsearchData);
-  
-  const api = useApi();
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsSearch(true);
-    setSearchTrigger(oldSearchTrigger => !oldSearchTrigger)
-    console.log("setIsSearch(true);")
-    setCurrentPage(1);
-    console.log("setCurrentPage(1);")
-  }
-
   return (
     <div className='search-container'>
-      <form onSubmit={handleSubmit} className="search-bar">
+      <form onSubmit={props.onSubmit} className="search-bar">
         <div className="criteria">
           <label htmlFor="type" >Pet type : </label>
           <select
             name="type"
             id="type"
-            onChange={handleChange}
-            value={searchData.type}
+            onChange={props.handleChange}
+            value={props.formData.type}
           >
             <option selected value=""> Type </option>
             <option value="dog" /*defaultValue*/>dog</option>
@@ -47,8 +27,8 @@ export default function SearchBar(props) {
           <select
             name="sex"
             id="sex"
-            onChange={handleChange}
-            value={searchData.sex}
+            onChange={props.handleChange}
+            value={props.formData.sex}
           >
             <option selected value=""> Sex </option>
             <option value="female" /*defaultValue*/>female</option>
@@ -62,8 +42,8 @@ export default function SearchBar(props) {
               name="age"
               type="number"
               placeholder="months"
-              onChange={handleChange}
-              value={searchData.age}
+              onChange={props.handleChange}
+              value={props.formData.age}
           />
         </div>
 

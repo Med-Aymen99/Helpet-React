@@ -1,0 +1,3 @@
+Each context is meant to represent a distinct set of state or props that are used by a specific set of components.
+
+conclusion: useContext is only called within a functional component that renders a UI
