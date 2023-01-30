@@ -56,7 +56,7 @@ export default function LoginForm(props) {
                                 />
                                 <br />
                             </div>
-                            <button>Sign In</button>
+                            <button className="form-button">Log In</button>
                         </form>
                         {/* <p className="forgetpwd">
                             <Link to="/ForgetPwd">Forgot password?</Link>

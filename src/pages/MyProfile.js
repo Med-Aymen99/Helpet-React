@@ -10,7 +10,7 @@ export default function MyProfile(props) {
     const {petList, setPetList, setUpdatePetData, setSelectedPetId} = useContext(PetContext);    
     let navigate = useContext(NavigationContext);  
 	const api = useApi();
-
+    
     const deletePet = (petId) => {
         api.delete(`pets/delete/${petId}`)
             .then((response) => {
@@ -36,9 +36,11 @@ export default function MyProfile(props) {
         />
       })
     
+    const user = auth.user || JSON.parse(localStorage.getItem('user'))
     return(
     <div className="page-content">
-        <h1>Welcome {auth.user.username}</h1>
+        <h1 className="welcome-user">Welcome {user.username}</h1>
+        <h2>These are your adoption posts :</h2>
         <section className="cards-list" >
             {pets}
         </section>

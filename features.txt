@@ -1,0 +1,10 @@
+0. change <Hero /> / remove unnecessary comments / add ids to user
+1. fixer les images
+2. update/delete only for the authenticated user
+3. username in the card
+4. adopt Pet button
+5. add firstname ,Lastname, phone number
+
+jiji jiji
+Medaymen aymen
+amir amir

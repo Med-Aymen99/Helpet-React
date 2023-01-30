@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import Navbar from "../Components/Navbar"
-import Hero from "../Components/Hero"
+import Intro from "../Components/Intro"
 import { PetContext } from "../context/PetContext"
 import { AuthContext } from "../utils/auth/AuthContext"
 import Card from "../Components/Card"
@@ -44,7 +44,7 @@ export default function Home(props) {
   })
   return (
     <div className="page-content">
-      <Hero />
+      <Intro />
       <SearchBar />
       <section className="cards-list" >
         {pets}

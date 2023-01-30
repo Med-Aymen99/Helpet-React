@@ -20,10 +20,13 @@ export default function Card(props) {
               <p className="pet--breed">Breed : {props.breed}</p>
               <p className="pet--sex">Sex : {props.sex}</p>
               <p className="pet--age">Age : {props.age} months</p>
-              <button onClick={props.onClickDelete}>
-                Delete
-              </button>
-              <Link to="/updateForm">
+              
+              {props.isAuthenticated &&
+                <button onClick={props.onClickDelete}>
+                  Delete
+                </button>
+              }
+              <Link to="/updateForm" className="Link-class">
                 {props.isAuthenticated &&
                     <button onClick={props.onClickUpdate}>
                       Update

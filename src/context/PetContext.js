@@ -33,6 +33,7 @@ const PetProvider = ({children}) => {
   
   const handleChangeImage = (event) => {
     const imageFile = event.target.files[0];
+    console.log(event.target.files[0])
     setselectedImageFile(imageFile);
   }
  

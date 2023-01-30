@@ -58,7 +58,7 @@ export default function SignUpForm(props) {
                             <label htmlFor="password">password :</label>
                             <input
                                 required
-                                type="text"
+                                type="password"
                                 placeholder="insert your password"
                                 onChange={handleChange}
                                 name="password"
@@ -66,7 +66,7 @@ export default function SignUpForm(props) {
                             />
                             <br />
                         </div>
-                            <button>Sign Up</button>
+                            <button className="form-button">Sign Up</button>
                     </form>
                 </div>
             </div>

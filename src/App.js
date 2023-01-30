@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import PetForm from "./pages/PetForm"
 import About from "./pages/About"
 import {Route, Routes} from 'react-router-dom'
@@ -13,14 +13,14 @@ import { AuthContext } from './utils/auth/AuthContext';
 import Navbar from "./Components/Navbar"
 import MyProfile from "./pages/MyProfile"
 
-export default function App() {
+export default function App(props) {
     
     const {isSearch, setNumberOfPages, currentPage } = useContext(PaginationContext)
     const {setPetList, searchData, searchTrigger} = useContext(PetContext);
     const {setAuth} = useContext(AuthContext)
   
     const api = useApi();
-    
+
   /*   React.useEffect(() => {
         api.get("/pets/postsCount/")
         .then((res) => {

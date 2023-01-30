@@ -17,15 +17,18 @@ export default function Navbar(props) {
 		navigate('/')
 		window.location.reload();
 	}
+	const user = auth.user || JSON.parse(localStorage.getItem('user'))
 
 	const getMyPets = () => {
 		console.log("in getMyPets")
         api.get("/pets/myProfile/")
         .then((response) => {
+		  console.log(response)
           setPetList(response.data)
         })
         .catch(err => console.log(err));
     }
+	
 
 	return (
 		<nav className="nav--bar">
@@ -41,40 +44,41 @@ export default function Navbar(props) {
 			<div className="buttons">
 				<div>
 					{auth.isAuthenticated &&
-						<button className="nav--button">
 							<Link to="/CreatePost" className="Link-class">
-								Give up for adoption
+								<button className="nav--button create-post-button">
+									Give up for adoption
+								</button>
 							</Link>
-						</button>
 					}
-						<button className="nav--button">
 							<Link to="/about" className="Link-class">
+								<button className="nav--button">
 									About Us
+								</button>
 							</Link>
-						</button>
 				</div>
 				<div>
 					{!auth.isAuthenticated &&
 						<>
-							<button className="nav--button">
-								<Link to="/Login" className="Link-class">
-										Login
-								</Link>
-							</button>
-							<button className="nav--button">
-								<Link to="/SignUp" className="Link-class">
-										Sign up
-								</Link>
-							</button>
+							<Link to="/Login" className="Link-class">
+								<button className="nav--button">
+									Login
+								</button>
+							</Link>
+							<Link to="/SignUp" className="Link-class">
+								<button className="nav--button">
+									Sign up
+								</button>
+							</Link>
 						</>
 					}
 					{auth.isAuthenticated &&
 						<>
+							<h4 className="nav-welcome">Hi {user.username}</h4>
+								<Link to="/MyProfile" className="Link-class" onClick={getMyPets}>
 							<button className="nav--button" >
-								<Link to="/MyProfile" className="Link-class" onClick={() => getMyPets}>
 									MyProfile
-								</Link>
 							</button>
+								</Link>
 							<button className="nav--button"
 									onClick={ () => {handleLogout(); goHome()} }>
 								Logout

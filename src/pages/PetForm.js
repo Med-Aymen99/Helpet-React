@@ -4,6 +4,7 @@ import { PetContext } from "../context/PetContext"
 import useApi from '../utils/api';
 import { PaginationContext } from '../context/PaginationContext';
 import { handleChangeFunc } from "../utils/generalFunctions";
+import { Router } from "react-router-dom";
 
 export default function PetForm(props) {
     const {petList, setPetList, addPetData, setaddPetData, selectedPetId,
@@ -45,7 +46,17 @@ export default function PetForm(props) {
         navigate('/')
     };
     const updatePet = (event) => {
-        api.put(`/pets/update/${selectedPetId}`, updatePetData)
+        const data = new FormData();
+        data.append("name", updatePetData.name);
+        data.append("type", updatePetData.type);
+        data.append("breed", updatePetData.breed);
+        data.append("age", updatePetData.age);
+        data.append("sex", updatePetData.sex);
+        data.append("imageFile", selectedImageFile);
+        console.log("selectedImageFile :", selectedImageFile)
+        console.log("data :",data)
+
+        api.put(`/pets/update/${selectedPetId}`, data)
         .then((response) => {
             const selectedPetIndex = petList.findIndex(pet => pet.id == selectedPetId)
             const item = {
@@ -58,11 +69,13 @@ export default function PetForm(props) {
             })
             console.log(response)
         })
-        .catch((err) => alert(err));
+        .catch((err) => console.log(err));
     
-        //const navigate = useContext(NavigationContext);
-        navigate('/')
+        const navigate = useContext(NavigationContext);
         event.preventDefault()
+        //Router.History.back();
+        navigate('/')
+        
       }
 
     return (
@@ -155,7 +168,7 @@ export default function PetForm(props) {
                             </div>
                         </div>
                     </div>
-                    <button >
+                    <button className="form-button">
                     {props.update ? "Update pet" : "Add pet"}
                     </button>
                 </form>

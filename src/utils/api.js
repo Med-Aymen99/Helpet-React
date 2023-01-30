@@ -13,5 +13,3 @@ export default function useApi() {
     apiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     return apiInstance;
 }
-
-//export const api = useApi();
