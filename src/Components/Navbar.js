@@ -7,7 +7,8 @@ import useApi from './../utils/api';
 import { PetContext } from './../context/PetContext';
 
 export default function Navbar(props) {
-	
+
+
 	const {auth, handleLogout} = useContext(AuthContext);
 	const {setPetList} = useContext(PetContext);
     let navigate = useContext(NavigationContext);  
@@ -19,16 +20,6 @@ export default function Navbar(props) {
 	}
 	const user = auth.user || JSON.parse(localStorage.getItem('user'))
 
-	const getMyPets = () => {
-		console.log("in getMyPets")
-        api.get("/pets/myProfile/")
-        .then((response) => {
-		  console.log(response)
-          setPetList(response.data)
-        })
-        .catch(err => console.log(err));
-    }
-	
 
 	return (
 		<nav className="nav--bar">
@@ -74,7 +65,7 @@ export default function Navbar(props) {
 					{auth.isAuthenticated &&
 						<>
 							<h4 className="nav-welcome">Hi {user.username}</h4>
-								<Link to="/MyProfile" className="Link-class" onClick={getMyPets}>
+								<Link to="/MyProfile" className="Link-class" >
 							<button className="nav--button" >
 									MyProfile
 							</button>

@@ -3,16 +3,11 @@ import {Link} from "react-router-dom";
 import notAvailable from "../images/notAvailable.jpg"
 
 export default function Card(props) {
-    
-    const imgName = props.imageRef
-    let imagePath = notAvailable
-    if (imgName!="") {
-      imagePath = require(`C:/Users/USER/NestJsProjects/helpet/uploads/${imgName}`)
-    }
+
     return (
           <div className="card" >
             <div className="pet-photo">
-              <img className="pet--image" src={imagePath} alt="Sorry we can't load the pet image."/>
+              <img className="pet--image" src={props.petImageFile ? `data:image/jpg;base64,${props.petImageFile }`: notAvailable} alt="Sorry we can't load the pet image."/>
             </div>
             <div className="pet-info">
               <p className="pet--name">{props.name}</p>

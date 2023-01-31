@@ -22,7 +22,7 @@ export default function PetForm(props) {
     const setFormData = props.update ? setUpdatePetData : setaddPetData ;
 
     const handleChange = handleChangeFunc(setFormData);
-
+    
     const addPet = (event) => {
         const data = new FormData();
         data.append("name", addPetData.name);
@@ -35,16 +35,11 @@ export default function PetForm(props) {
         api.post("pets/create",data)
         .then((response) => {console.log("response")
             setCurrentPage(numberOfPages)
-            // setPetList ([
-            //   ...petList,
-            //   addPetData
-            // ])
         })
         .catch((err) => alert(err));
-
-        //const navigate = useContext(NavigationContext);
         navigate('/')
     };
+
     const updatePet = (event) => {
         const data = new FormData();
         data.append("name", updatePetData.name);
@@ -52,9 +47,10 @@ export default function PetForm(props) {
         data.append("breed", updatePetData.breed);
         data.append("age", updatePetData.age);
         data.append("sex", updatePetData.sex);
-        data.append("imageFile", selectedImageFile);
-        console.log("selectedImageFile :", selectedImageFile)
-        console.log("data :",data)
+        
+        if (selectedImageFile) {
+            data.append("imageFile", selectedImageFile);
+        }
 
         api.put(`/pets/update/${selectedPetId}`, data)
         .then((response) => {
@@ -70,9 +66,8 @@ export default function PetForm(props) {
             console.log(response)
         })
         .catch((err) => console.log(err));
-    
-        const navigate = useContext(NavigationContext);
-        event.preventDefault()
+        
+        //event.preventDefault()
         //Router.History.back();
         navigate('/')
         

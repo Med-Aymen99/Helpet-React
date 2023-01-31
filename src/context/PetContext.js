@@ -10,7 +10,7 @@ const PetProvider = ({children}) => {
     breed: "",
     age: "",
     sex: "",
-    imageRef: ""
+    petImageFile: null
   }
   const [petList, setPetList] = React.useState(
     [{
@@ -28,7 +28,7 @@ const PetProvider = ({children}) => {
   })
   const [filteredPetList, setFilteredPedList] = React.useState(petList);
   const [selectedPetId,setSelectedPetId] = React.useState(-1);
-  const [selectedImageFile, setselectedImageFile] = React.useState();
+  const [selectedImageFile, setselectedImageFile] = React.useState(null);
   const [searchTrigger, setSearchTrigger] = React.useState(false)
   
   const handleChangeImage = (event) => {

@@ -46,7 +46,7 @@ export default function App(props) {
       console.log("inside getAllPets")
       api.get("/pets/petListPages/", {params: {page: currentPage}})
       .then((response) => {
-        console.log(response.data)
+        console.log("My pets :",response.data)
         setPetList(response.data.items)
         setNumberOfPages(response.data.total)
       })

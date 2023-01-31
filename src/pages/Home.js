@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import Navbar from "../Components/Navbar"
 import Intro from "../Components/Intro"
 import { PetContext } from "../context/PetContext"
@@ -42,6 +42,7 @@ export default function Home(props) {
         isAuthenticated={auth.isAuthenticated}
     />
   })
+
   return (
     <div className="page-content">
       <Intro />

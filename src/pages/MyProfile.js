@@ -10,7 +10,18 @@ export default function MyProfile(props) {
     const {petList, setPetList, setUpdatePetData, setSelectedPetId} = useContext(PetContext);    
     let navigate = useContext(NavigationContext);  
 	const api = useApi();
-    
+	
+	const getMyPets = () => {
+		console.log("in getMyPets")
+        api.get("/pets/myProfile/")
+        .then((response) => {
+		  console.log(response)
+          setPetList(response.data)
+        })
+        .catch(err => console.log(err));
+    }
+	getMyPets()
+
     const deletePet = (petId) => {
         api.delete(`pets/delete/${petId}`)
             .then((response) => {
