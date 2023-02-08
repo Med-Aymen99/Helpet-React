@@ -10,15 +10,16 @@ export default function Navbar(props) {
 
 
 	const {auth, handleLogout} = useContext(AuthContext);
+	const {setPetList} = useContext(PetContext);
     let navigate = useContext(NavigationContext);  
+	const api = useApi();
   
 	const goHome = () => {
 		navigate('/')
 		window.location.reload();
 	}
 	const user = auth.user || JSON.parse(localStorage.getItem('user'))
-	
-	console.log("isAuthenticated :",auth.isAuthenticated)
+
 
 	return (
 		<nav className="nav--bar">

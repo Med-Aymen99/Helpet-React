@@ -5,74 +5,73 @@ import useApi from '../utils/api';
 import { PaginationContext } from '../context/PaginationContext';
 import { handleChangeFunc } from "../utils/generalFunctions";
 import { Router } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { updatePetList } from "../redux/petSlice";
 
 export default function PetForm(props) {
+    const {petList, setPetList, addPetData, setaddPetData, selectedPetId,
+             selectedImageFile, handleChangeImage,
+            updatePetData, setUpdatePetData} = useContext(PetContext);
     
-    const [addPetData, setaddPetData] = React.useState({})
-    const {selectedPetId,setSelectedPetId, updatePetData, setUpdatePetData} = useContext(PetContext)
-
-    const [selectedImageFile, setselectedImageFile] = React.useState(null);
     const navigate = useContext(NavigationContext);
     const {setCurrentPage, numberOfPages} = useContext(PaginationContext)
 
     const api = useApi();
-    const dispatch = useDispatch()
-
+    
     const formData = props.update ? updatePetData : addPetData ;
+    console.log("updateFormData: " ,updatePetData)
+    console.log("addFormData: " , addPetData)
     const setFormData = props.update ? setUpdatePetData : setaddPetData ;
 
-    const handleChangeImage = (event) => {
-        const imageFile = event.target.files[0];
-        console.log(event.target.files[0])
-        setselectedImageFile(imageFile);
-    }
     const handleChange = handleChangeFunc(setFormData);
     
-    const petFormData = (petData) => {
+    const addPet = (event) => {
         const data = new FormData();
-        data.append("name", petData.name);
-        data.append("type", petData.type);
-        data.append("breed", petData.breed);
-        data.append("age", petData.age);
-        data.append("sex", petData.sex);
-        if (selectedImageFile) {
-            data.append("imageFile", selectedImageFile);
-        }
-        return data;
-    }
+        data.append("name", addPetData.name);
+        data.append("type", addPetData.type);
+        data.append("breed", addPetData.breed);
+        data.append("age", addPetData.age);
+        data.append("sex", addPetData.sex);
+        data.append("imageFile", selectedImageFile);
 
-    const addPet = async () => {
-        const data = petFormData(addPetData);
-        try {
-        const response = await api.post("/pets/create", data);
-        console.log("response")
-        setCurrentPage(numberOfPages)
-        } catch(err) {
-          alert(err);
-        }
+        api.post("pets/create",data)
+        .then((response) => {console.log("response")
+            setCurrentPage(numberOfPages)
+        })
+        .catch((err) => alert(err));
         navigate('/')
     };
 
-    const updatePet = async () => {
-        const data = petFormData(updatePetData);
-        try {
-            const response = await api.put(`/pets/update/${selectedPetId}`, data) ;
-            const payload = {
-                selectedPetId,
-                updatePetData 
-            }
-            dispatch(updatePetList(payload))
-        } catch (err) {
-            console.log(err)
+    const updatePet = (event) => {
+        const data = new FormData();
+        data.append("name", updatePetData.name);
+        data.append("type", updatePetData.type);
+        data.append("breed", updatePetData.breed);
+        data.append("age", updatePetData.age);
+        data.append("sex", updatePetData.sex);
+        
+        if (selectedImageFile) {
+            data.append("imageFile", selectedImageFile);
         }
+
+        api.put(`/pets/update/${selectedPetId}`, data)
+        .then((response) => {
+            const selectedPetIndex = petList.findIndex(pet => pet.id == selectedPetId)
+            const item = {
+                id : selectedPetId,
+                ...updatePetData
+            }
+            setPetList(oldPetList => {
+                oldPetList.splice(selectedPetIndex,1,item);
+                return oldPetList;
+            })
+            console.log(response)
+        })
+        .catch((err) => console.log(err));
         
         //event.preventDefault()
         //Router.History.back();
         navigate('/')
         
-    };
+      }
 
     return (
         <div className="PetForm">

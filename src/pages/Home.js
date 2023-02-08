@@ -4,54 +4,22 @@ import Intro from "../Components/Intro"
 import { PetContext } from "../context/PetContext"
 import { AuthContext } from "../utils/auth/AuthContext"
 import Card from "../Components/Card"
-import Pagination from "../Components/Pagination"
+import Pagination from "../Components/PaginationButtons"
 import SearchBar from "../Components/SearchBar"
 import useApi from './../utils/api';
 import { NavigationContext } from './../context/NavigationContext';
+import HomePetCards from "../Components/HomePetCards"
+import PaginationButtons from "../Components/PaginationButtons"
 
 export default function Home(props) {
-  const {petList, setUpdatePetData, setSelectedPetId, setPetList} = useContext(PetContext);
-  const {auth} = useContext(AuthContext);
- 
-  const api = useApi();
-
-  const updateForm = (item) =>  {
-    setSelectedPetId(item.id)
-    const {id, ...data} = item
-    setUpdatePetData(data)
-  };
-
-  const navigate = useContext(NavigationContext);
-
-  const deletePet = (petId) => {
-    api.delete(`pets/delete/${petId}`)
-        .then((response) => {
-        console.log(`pet of id ${petId} has been deleted`)
-        setPetList(oldPetList => oldPetList.filter(pet => pet.id != petId))
-        })
-        .catch((err) => console.log(err));
-    navigate('/')
-  }
-
-  const pets = petList.map(item => {
-    return <Card
-        key = {item.id}
-        {...item}
-        onClickDelete={() => deletePet(item.id)}
-        onClickUpdate={() => updateForm(item)}
-        isAuthenticated={auth.isAuthenticated}
-    />
-  })
 
   return (
     <div className="page-content">
       <Intro />
       <SearchBar />
-      <section className="cards-list" >
-        {pets}
-      </section>
+      <HomePetCards />
       <div className="pagination">
-        <Pagination />
+        <PaginationButtons />
       </div>
     </div>
   )

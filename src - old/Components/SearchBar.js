@@ -9,7 +9,6 @@ export default function SearchBar(props) {
 
   const {searchData, setSearchTrigger, setsearchData} = useContext(PetContext);
   const {setCurrentPage, setIsSearch} = useContext(PaginationContext);
-  
   const handleChange = handleChangeFunc(setsearchData);
   
   const api = useApi();

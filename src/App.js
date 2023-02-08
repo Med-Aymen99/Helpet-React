@@ -14,62 +14,21 @@ import Navbar from "./Components/Navbar"
 import MyProfile from "./pages/MyProfile"
 
 export default function App(props) {
-    
-    const {isSearch, setNumberOfPages, currentPage } = useContext(PaginationContext)
-    const {setPetList, searchData, searchTrigger} = useContext(PetContext);
     const {setAuth} = useContext(AuthContext)
-  
-    const api = useApi();
 
-  /*   React.useEffect(() => {
-        api.get("/pets/postsCount/")
-        .then((res) => {
-          setTotalPosts(res.data)
-        })
-        .catch(err => console.log(err));
-
-    },[])
- */
+    // Check if a user is authenticated & set the "isAuthenticated" to true
     React.useEffect(() => {
-      console.log("useEffect executed")
-      if (localStorage.getItem('auth_token')) {
-        setAuth(prevAuth => ({
-            ...prevAuth,
-            isAuthenticated : true,
-        }))
-      }
-      isSearch ? filterPets() : getAllPets()
-    },[currentPage, searchTrigger])
-
-
-    const getAllPets = () => {
-      console.log("inside getAllPets")
-      api.get("/pets/petListPages/", {params: {page: currentPage}})
-      .then((response) => {
-        console.log("My pets :",response.data)
-        setPetList(response.data.items)
-        setNumberOfPages(response.data.total)
-      })
-      .catch(err => console.log(err));
-    }
-
-    const filterPets = () => {
-      console.log("inside filterPets")
-      const newsearchData = removeEmptyAttributes(searchData) ;
-      const filteredSearchData = {
-        data : newsearchData,
-        page : currentPage
-      }
-      console.log("filteredSearchData = ", filteredSearchData)
-      api.get("/pets/Paginatedfilter", {params: filteredSearchData}).then((response) => {
-          console.log("response in filter :", response.data)
-          setPetList(response.data.items)
-          setNumberOfPages(response.data.total)
-      })
-    }
+        if (localStorage.getItem('auth_token')) {
+            setAuth(prevAuth => ({
+                ...prevAuth,
+                isAuthenticated : true,
+            }))
+        }
+    }, [])
 
     return (
         <div>
+          <Navbar/>
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/CreatePost" element={<PetForm update={false} />} />
@@ -77,10 +36,8 @@ export default function App(props) {
               <Route path="/about" element={<About/>} />
               <Route path="/Login" element={<LoginForm />} />
               <Route path="/SignUp" element={<SignUpForm />} />
-              <Route path="/MyProfile" element={<MyProfile />} />
-              
+              <Route path="/MyProfile" element={<MyProfile />} /> 
           </Routes>
-          <Navbar/>
         </div>
     )
 }
