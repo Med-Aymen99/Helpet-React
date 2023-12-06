@@ -1,5 +1,6 @@
+
 const config = {
-    apiBaseUrl: 'http://localhost:3001',
+    apiBaseUrl: process.env.REACT_APP_API_URL,
     apiTimeout: 5000,
     apiHeaders: {
       'Content-Type': 'application/json',
