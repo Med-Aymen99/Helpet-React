@@ -20,6 +20,8 @@
 .env.development
 .env.test.local
 .env.production
+.prettier*
+.eslintrc.js
 
 npm-debug.log*
 yarn-debug.log*
